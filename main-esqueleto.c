@@ -22,6 +22,9 @@ typedef struct datos
 int readFile(Datos * archivo, char *);
 void writeFile(Datos * archivoEnOctal, char *);
 void convertirAOctal(Datos * archivo, Datos * archivoEnOctal);
+void transCaracterMod0(char *, int, int);
+void transCaracterMod1(char, char *, int, int);
+
 
 
 //-- Funciones
@@ -85,6 +88,47 @@ void convertirAOctal(Datos * datosBin, Datos * datosOct)
 {
 	//TODO: COMPLETAR EL DESARROLLO DE LA FUNCION.
 
+}
+
+void
+transCaracterMod0(char *t, int tamanioTotal, int i)
+{
+	if (i < tamanioTotal)
+	{
+		char a = *t;
+		char b = (a >> 5) + '0';
+		char x = a << 3;
+		x = (x >> 5) + '0';
+		unsigned char y = a << 6;
+		y = y >> 5;
+		printf("%c \n", a);
+		printf("%c \n", b);
+		printf("%c \n", x);
+		t++;
+		i++;
+		transCaracterMod1(y, t, tamanioTotal, i);
+	}
+}
+
+void
+transCaracterMod1(char y, char *t, int tamanioTotal, int i)
+{
+	if (i < tamanioTotal)
+	{
+		char a = *t;
+		char b = a >> 7;
+		unsigned char c = a << 1;
+		c = (c >> 5) + '0';
+		unsigned char d = a << 4;
+		d = (d >> 5) + '0';
+		unsigned char e = a << 7;
+		e = (e >> 5) + '0';
+		y = (y + b) + '0';
+		printf("%c\n", y);
+		printf("%c\n", c);
+		printf("%c\n", d);
+		printf("%c\n", e);
+	}
 }
 
 //-- Funcion main de la aplicacion

@@ -21,9 +21,9 @@ typedef struct datos
 //-- Prototipos de las funciones
 int readFile(Datos * archivo, char *);
 void writeFile(Datos * archivoEnOctal, char *);
-void convertirAOctal(Datos * archivo, Datos * archivoEnOctal);
-void transCaracterMod0(char *, int, int);
-void transCaracterMod1(char, char *, int, int);
+void transCaracterMod0 (unsigned char *, unsigned char *,int, int);
+void transCaracterMod1 (unsigned char, unsigned char *, unsigned char *, int, int);
+void transCaracterMod2 (unsigned char, unsigned char *, unsigned char *, int , int);
 
 
 
@@ -87,48 +87,84 @@ void writeFile(Datos * archivoEnOctal, char *nombreArchivo)
 void convertirAOctal(Datos * datosBin, Datos * datosOct)
 {
 	//TODO: COMPLETAR EL DESARROLLO DE LA FUNCION.
-
+	int tamanioDatosOctal = datosOct.tamanio;
+	unsigned char datosDeOct[tamanio];
+	unsigned char *datosDeBin = datosBin.informacion;
+	int tamanioTotal = datosBin.tamanio;
+	int byteDeLectura = 0;
 }
 
 void
-transCaracterMod0(char *t, int tamanioTotal, int i)
+transCaracterMod0 (unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
 {
-	if (i < tamanioTotal)
-	{
-		char a = *t;
-		char b = (a >> 5) + '0';
-		char x = a << 3;
-		x = (x >> 5) + '0';
-		unsigned char y = a << 6;
-		y = y >> 5;
-		printf("%c \n", a);
-		printf("%c \n", b);
-		printf("%c \n", x);
-		t++;
-		i++;
-		transCaracterMod1(y, t, tamanioTotal, i);
-	}
+  if (i < tamanioTotal)
+    {
+      unsigned char a = *t;
+      unsigned char b = (a >> 5) + '0';
+      unsigned char x = a << 3;
+      x = (x >> 5) + '0';
+      unsigned char y = a << 6;
+      y = y >> 5;
+      printf ("%c ", b);
+      printf ("%c ", x);
+      t++;
+      i++;
+      if(i==tamanioTotal)
+      {
+          y = y+'0';
+          printf ("%c ", y);
+      }
+      transCaracterMod1 (y, t, tamanioTotal, i);
+    }
 }
 
 void
-transCaracterMod1(char y, char *t, int tamanioTotal, int i)
+transCaracterMod1 (unsigned char y, unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
 {
-	if (i < tamanioTotal)
-	{
-		char a = *t;
-		char b = a >> 7;
-		unsigned char c = a << 1;
-		c = (c >> 5) + '0';
-		unsigned char d = a << 4;
-		d = (d >> 5) + '0';
-		unsigned char e = a << 7;
-		e = (e >> 5) + '0';
-		y = (y + b) + '0';
-		printf("%c\n", y);
-		printf("%c\n", c);
-		printf("%c\n", d);
-		printf("%c\n", e);
-	}
+  if (i < tamanioTotal)
+    {
+      char a = *t;
+      char b = a >> 7;
+      unsigned char c = a << 1;
+      c = (c >> 5) +'0';
+      unsigned char d = a << 4;
+      d = (d >> 5)+'0';
+      unsigned char e = a << 7;
+      e = (e >> 5);
+      y = (y + b) + '0';
+      printf ("%c ", y);
+      printf ("%c ", c);
+      printf ("%c ", d);
+      t++;
+      i++;
+      if(i==tamanioTotal)
+      {
+          e = e+'0';
+          printf ("%c ", e);
+      }
+      transCaracterMod2(e, t, tamanioTotal, i);
+    }
+}
+
+void
+transCaracterMod2 (unsigned char y, unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
+{
+  if (i < tamanioTotal)
+    {
+      unsigned char a = *t;
+      unsigned char b = a >> 6;
+      unsigned char c = a << 2;
+      c = (c >> 5) +'0';
+      unsigned char d = a << 5;
+      d = (d >> 5)+'0';
+      y = (y + b) + '0';
+      printf ("%c ", y);
+      printf ("%c ", c);
+      printf ("%c ", d);
+      t++;
+      i++;
+      transCaracterMod0(t, tamanioTotal, i);
+    }
 }
 
 //-- Funcion main de la aplicacion

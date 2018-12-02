@@ -17,8 +17,7 @@ void convertirAOctal(Datos * datosBin, Datos * datosOct)
 	transCaracterMod0(datosDeBin, datosDeOct, tamanioTotal, byteDeLectura);
 
 }
-void
-transCaracterMod0(unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
+void transCaracterMod0(unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
 {
 	if (i < tamanioTotal)
 	{
@@ -62,8 +61,7 @@ transCaracterMod0(unsigned char *t, unsigned char *datosDeOct, int tamanioTotal,
 }
 
 //Transforma las cadenas basados en el caracter dado por parametro tales que el modulo 3 (%3) da uno (1) y sobre 1 por el parametro
-void
-transCaracterMod1(unsigned char y, unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
+void transCaracterMod1(unsigned char y, unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
 {
 	if (i < tamanioTotal)
 	{
@@ -118,8 +116,7 @@ transCaracterMod1(unsigned char y, unsigned char *t, unsigned char *datosDeOct, 
 }
 
 //Transforma las cadenas basados en el caracter dado por parametro tales que el modulo 3 (%3) da cero (0) y sobre 1 por el parametro
-void
-transCaracterMod2(unsigned char y, unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
+void transCaracterMod2(unsigned char y, unsigned char *t, unsigned char *datosDeOct, int tamanioTotal, int i)
 {
 	if (i < tamanioTotal)
 	{

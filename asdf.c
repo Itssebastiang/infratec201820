@@ -1,3 +1,10 @@
+typedef struct datos
+{
+	int tamanio;
+	unsigned char *informacion;
+} Datos;
+
+
 void convertirAOctal(Datos * datosBin, Datos * datosOct)
 {
 	//TODO: COMPLETAR EL DESARROLLO DE LA FUNCION.
